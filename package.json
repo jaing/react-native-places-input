@@ -1,0 +1,30 @@
+{
+  "name": "react-native-places-input",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Kamil Thomas",
+  "license": "MIT",
+  "homepage": "https://github.com/jaing/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaing/react-native-fancy-input"
+  },
+  "bugs": {
+    "url": "https://github.com/jaing/react-native-fancy-input/issues"
+  },
+  "keywords": [
+    "input",
+    "react-native",
+    "google places",
+    "places API",
+    "react-component",
+    "ios",
+    "android"
+  ],
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react-native": ">= 0.25"
+  }
+}
