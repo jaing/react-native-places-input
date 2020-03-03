@@ -84,7 +84,8 @@ class PlacesInput extends Component {
         const place = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${this.props.googleApiKey}&fields=${this.props.queryFields}&language=${this.props.language}`).then(response => response.json());
 
         return this.setState({
-            showList: false
+            showList: false,
+            query: place.result.formatted_address,
         }, () => {
             return this.props.onSelect && this.props.onSelect(place);
         });
