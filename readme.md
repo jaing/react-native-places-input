@@ -72,3 +72,39 @@ stylesList | PropTypes.object,| {} | Custom styles for a list
 stylesLoading | PropTypes.object,| {} | Custom styles for a loading indicator
 textInputProps | PropTypes.object, | {} | Custom TextInput props
 onSelect | PropTypes.func, | | Function called when you select a place
+
+## Examples
+### Inline
+
+
+![exmaples](https://s5.gifyu.com/images/ezgif-3-2569ff9b1625.gif)
+
+```javascript
+    <PlacesInput
+        placeHolder={'Some placeholder'}
+        stylesContainer={{
+            position: 'relative',
+            alignSelf: 'stretch',
+            margin: 0,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            shadowOpacity: 0,
+            borderColor: '#dedede',
+            borderWidth: 1,
+            marginBottom: 10
+        }}
+        stylesList={{
+            top: 50,
+            borderColor: '#dedede',
+            borderLeftWidth: 1,
+            borderRightWidth: 1,
+            borderBottomWidth: 1,
+            left: -1,
+            right: -1
+        }}
+        googleApiKey={GOOGLE_API_KEY} 
+        onSelect={place => this.setState({place})} 
+    />
+```
