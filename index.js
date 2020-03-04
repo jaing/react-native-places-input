@@ -66,11 +66,33 @@ class PlacesInput extends Component {
         this.timeout = setTimeout(this.fetchPlaces, 1000);
     };
 
+    buildCountryQuery = () => {
+        const { queryCountries } = this.props;
+
+        if (!queryCountries) {
+            return ''
+        }
+
+        return `&components=${queryCountries.map(countryCode => {
+            return `country:${countryCode}`
+        }).join('|')}`
+    };
+
+    buildLocationQuery = () => {
+        const { searchLatitude, searchLongitude, searchRadius } = this.props;
+
+        if (!searchLatitude || !searchLongitude || !searchRadius) {
+            return '';
+        }
+
+        return `&location=${searchLatitude},${searchLongitude}&radius=${searchRadius}`
+    };
+
     fetchPlaces = async () => {
         this.setState({
             isLoading: true
         }, async () => {
-            const places = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${this.state.query}&key=${this.props.googleApiKey}&inputtype=textquery&language=${this.props.language}&fields=${this.props.queryFields}&radius=${this.props.searchRadius}&location=${this.props.searchLatitude},${this.props.searchLongitude}`).then(response => response.json());
+            const places = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${this.state.query}&key=${this.props.googleApiKey}&inputtype=textquery&language=${this.props.language}&fields=${this.props.queryFields}${this.buildLocationQuery()}${this.buildCountryQuery()}`).then(response => response.json());
 
             this.setState({
                 isLoading: false,
@@ -100,7 +122,7 @@ PlacesInput.propTypes = {
     stylesItemText: PropTypes.object,
     stylesLoading: PropTypes.object,
     resultRender: PropTypes.func,
-    queryFields: PropTypes.string,
+    queryCountries: PropTypes.array,
     searchRadius: PropTypes.number,
     searchLatitude: PropTypes.number,
     searchLongitude: PropTypes.number,
@@ -120,9 +142,6 @@ PlacesInput.defaultProps = {
     stylesItem: {},
     stylesLoading: {},
     stylesItemText: {},
-    searchRadius: 1000,
-    searchLatitude: 51.905070,
-    searchLongitude: 19.458834,
     queryFields: 'formatted_address,geometry,name',
     placeHolder: 'Search places...',
     textInputProps: {},

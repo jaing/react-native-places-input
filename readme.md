@@ -60,10 +60,11 @@ iconResult | PropTypes.any, | | Icon added to results
 language | PropTypes.string, | en | Language for google API call
 placeHolder | PropTypes.string, | Search places... | placeholder for an input
 queryFields | PropTypes.string, | formatted_address,geometry,name | Fields requested from Google API
+queryCountries | PropTypes.array | | Array of country codes to limit results
 resultRender | PropTypes.func, | place => place.description | Function to render results text
-searchLatitude | PropTypes.number, | 51.905070 | Lat to limit results
-searchLongitude | PropTypes.number, | 19.458834 | Lng to limit results
-searchRadius | PropTypes.number, | 1000 | radius to limit results
+searchLatitude | PropTypes.number, |  | Lat to limit results
+searchLongitude | PropTypes.number, |  | Lng to limit results
+searchRadius | PropTypes.number, |  | radius to limit results
 stylesContainer | PropTypes.object, | {} | Custom styles for a container
 stylesInput | PropTypes.object,| {} | Custom styles for an input
 stylesItem | PropTypes.object,| {} | Custom styles for an item
@@ -104,6 +105,31 @@ onSelect | PropTypes.func, | | Function called when you select a place
             left: -1,
             right: -1
         }}
+        googleApiKey={GOOGLE_API_KEY} 
+        onSelect={place => this.setState({place})} 
+    />
+```
+
+### Limit results to a country
+
+```javascript
+    <PlacesInput
+        placeHolder={'Some placeholder'}
+        queryCountries=['pl', 'fr']
+        googleApiKey={GOOGLE_API_KEY} 
+        onSelect={place => this.setState({place})} 
+    />
+```
+
+
+### Limit results to a location
+
+```javascript
+    <PlacesInput
+        placeHolder={'Some placeholder'}
+        searchRadius={500}
+        searchLatitude={51.905070}
+        searchLongitude={19.458834}
         googleApiKey={GOOGLE_API_KEY} 
         onSelect={place => this.setState({place})} 
     />
