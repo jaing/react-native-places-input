@@ -115,7 +115,7 @@ onSelect | PropTypes.func, | | Function called when you select a place
 ```javascript
     <PlacesInput
         placeHolder={'Some placeholder'}
-        queryCountries=['pl', 'fr']
+        queryCountries={['pl', 'fr']}
         googleApiKey={GOOGLE_API_KEY} 
         onSelect={place => this.setState({place})} 
     />
