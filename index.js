@@ -122,6 +122,7 @@ PlacesInput.propTypes = {
     stylesItemText: PropTypes.object,
     stylesLoading: PropTypes.object,
     resultRender: PropTypes.func,
+    queryFields: PropTypes.string,
     queryCountries: PropTypes.array,
     searchRadius: PropTypes.number,
     searchLatitude: PropTypes.number,
