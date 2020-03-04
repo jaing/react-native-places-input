@@ -9,7 +9,7 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
     
 or
 
-    npm intsall react-native-places-input
+    npm install react-native-places-input
     
 ## Usage
 Fairly easy. Few required props but most of the work is already done in a component.
