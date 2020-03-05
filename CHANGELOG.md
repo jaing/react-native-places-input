@@ -1,4 +1,11 @@
 # Changelog
+## 1.0.6
+Bug fixes:
+* Component wont trigger search if input value is empty or after you clear it using text input x
+
+New configuration props:
+* **requiredCharactersBeforeSearch** - component wont fetch places unless string length is equal this prop. Default 2.
+* **requiredTimeBeforeSearch** - idle time on text input before component will fetch places.
 ## 1.0.5
 Remove default props for lat,lng and radius. 
 Add queryCountries where you can pass array of countries to limit your search results. 

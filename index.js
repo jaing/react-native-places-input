@@ -63,7 +63,7 @@ class PlacesInput extends Component {
 
     onPlaceSearch = () => {
         clearTimeout(this.timeout);
-        this.timeout = setTimeout(this.fetchPlaces, 1000);
+        this.timeout = setTimeout(this.fetchPlaces, this.props.requiredTimeBeforeSearch);
     };
 
     buildCountryQuery = () => {
@@ -89,6 +89,9 @@ class PlacesInput extends Component {
     };
 
     fetchPlaces = async () => {
+        if (!this.state.query || this.state.query.length < this.props.requiredCharactersBeforeSearch) {
+            return;
+        }
         this.setState({
             isLoading: true
         }, async () => {
@@ -134,6 +137,8 @@ PlacesInput.propTypes = {
     iconInput: PropTypes.any,
     language: PropTypes.string,
     onSelect: PropTypes.func,
+    requiredCharactersBeforeSearch: PropTypes.number,
+    requiredTimeBeforeSearch: PropTypes.number,
 };
 
 PlacesInput.defaultProps = {
@@ -147,7 +152,9 @@ PlacesInput.defaultProps = {
     placeHolder: 'Search places...',
     textInputProps: {},
     language: 'en',
-    resultRender: place => place.description
+    resultRender: place => place.description,
+    requiredCharactersBeforeSearch: 2,
+    requiredTimeBeforeSearch: 1000
 };
 
 const styles = StyleSheet.create({
@@ -186,6 +193,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: 'rgba(0,0,0,0.1)',
         padding: 15,
+        position: 'relative',
+        zIndex: 10001
     },
     placeIcon: {
         position: 'absolute',
