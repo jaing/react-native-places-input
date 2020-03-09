@@ -1,4 +1,6 @@
 # Changelog
+## 1.0.8
+Fixed issue that in some cases list of places is not displayed. 
 ## 1.0.7
 Fixed issue in Android with TouchOpacity not clickable in Scroll View with absolute position.
 ## 1.0.6

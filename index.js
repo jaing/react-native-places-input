@@ -28,6 +28,7 @@ class PlacesInput extends Component {
                 onChangeText={query => this.setState({ query }, () => this.onPlaceSearch())}
                 value={this.state.query}
                 onFocus={() => this.setState({ showList: true })}
+                onBlur={() => this.setState({ showList: false })}
                 {...this.props.textInputProps}
                 clearButtonMode="always"
               />
@@ -100,6 +101,7 @@ class PlacesInput extends Component {
         }
         this.setState(
           {
+              showList: true,
               isLoading: true,
           },
           async () => {
