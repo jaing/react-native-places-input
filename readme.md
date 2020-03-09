@@ -4,6 +4,8 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.0.7
+Fixed issue in Android with TouchOpacity not clickable in Scroll View with absolute position.
 ### 1.0.6
 Bug fixes:
 * Component wont trigger search if input value is empty or after you clear it using text input x
