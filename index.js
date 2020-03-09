@@ -1,65 +1,66 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
     ActivityIndicator,
-    Dimensions,
-    ScrollView,
     StyleSheet,
     Text,
     TextInput,
     TouchableOpacity,
-    View
-} from "react-native";
-
-const { height } = Dimensions.get('window');
+    View,
+} from 'react-native';
 
 class PlacesInput extends Component {
     state = {
         query: '',
         places: [],
         showList: false,
-        isLoading: false
+        isLoading: false,
     };
 
     timeout = null;
 
     render() {
         return (
-            <View style={[styles.container, this.props.stylesContainer]}>
-                <TextInput
-                    placeholder={this.props.placeHolder}
-                    style={[styles.input, this.props.stylesInput]}
-                    onChangeText={query => this.setState({query}, () => this.onPlaceSearch())}
-                    value={this.state.query}
-                    onFocus={() => this.setState({showList: true})}
-                    {...this.props.textInputProps}
-                    clearButtonMode="always"
-                />
-                {this.state.showList && (
-                    <ScrollView style={[styles.scrollView, this.props.stylesList]}>
-                        {this.state.isLoading && (
-                            <ActivityIndicator size="small" style={[styles.loading, this.props.stylesLoading]} />
-                        )}
-                        {this.state.places.map(place => {
-                            return (
-                                <TouchableOpacity
-                                    key={`place-${place.id}`}
-                                    style={[styles.place, this.props.stylesItem]}
-                                    onPress={() => this.onPlaceSelect(place.place_id)}
-                                >
-                                    <Text style={[styles.placeText, this.props.stylesItemText]}>
-                                        {this.props.resultRender(place)}
-                                    </Text>
-                                    {this.props.iconResult}
-                                </TouchableOpacity>
-                            )
-                        })}
-                    </ScrollView>
-                )}
-            </View>
+          <View style={[styles.container, this.props.stylesContainer]}>
+              <TextInput
+                placeholder={this.props.placeHolder}
+                style={[styles.input, this.props.stylesInput]}
+                onChangeText={query => this.setState({ query }, () => this.onPlaceSearch())}
+                value={this.state.query}
+                onFocus={() => this.setState({ showList: true })}
+                {...this.props.textInputProps}
+                clearButtonMode="always"
+              />
+              {this.state.showList && (
+                <View
+                  style={[styles.scrollView, this.props.stylesList]}
+                  keyboardShouldPersistTaps="always"
+                >
+                    {this.state.isLoading && (
+                      <ActivityIndicator
+                        size="small"
+                        style={[styles.loading, this.props.stylesLoading]}
+                      />
+                    )}
+                    {this.state.places.map(place => {
+                        return (
+                          <TouchableOpacity
+                            key={`place-${place.id}`}
+                            style={[styles.place, this.props.stylesItem]}
+                            onPress={() => this.onPlaceSelect(place.place_id)}
+                          >
+                              <Text style={[styles.placeText, this.props.stylesItemText]}>
+                                  {this.props.resultRender(place)}
+                              </Text>
+                              {this.props.iconResult}
+                          </TouchableOpacity>
+                        );
+                    })}
+                </View>
+              )}
+          </View>
         );
     }
-
 
     onPlaceSearch = () => {
         clearTimeout(this.timeout);
@@ -70,12 +71,14 @@ class PlacesInput extends Component {
         const { queryCountries } = this.props;
 
         if (!queryCountries) {
-            return ''
+            return '';
         }
 
-        return `&components=${queryCountries.map(countryCode => {
-            return `country:${countryCode}`
-        }).join('|')}`
+        return `&components=${queryCountries
+        .map(countryCode => {
+            return `country:${countryCode}`;
+        })
+        .join('|')}`;
     };
 
     buildLocationQuery = () => {
@@ -85,36 +88,54 @@ class PlacesInput extends Component {
             return '';
         }
 
-        return `&location=${searchLatitude},${searchLongitude}&radius=${searchRadius}`
+        return `&location=${searchLatitude},${searchLongitude}&radius=${searchRadius}`;
     };
 
     fetchPlaces = async () => {
-        if (!this.state.query || this.state.query.length < this.props.requiredCharactersBeforeSearch) {
+        if (
+          !this.state.query ||
+          this.state.query.length < this.props.requiredCharactersBeforeSearch
+        ) {
             return;
         }
-        this.setState({
-            isLoading: true
-        }, async () => {
-            const places = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${this.state.query}&key=${this.props.googleApiKey}&inputtype=textquery&language=${this.props.language}&fields=${this.props.queryFields}${this.buildLocationQuery()}${this.buildCountryQuery()}`).then(response => response.json());
+        this.setState(
+          {
+              isLoading: true,
+          },
+          async () => {
+              const places = await fetch(
+                `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${
+                  this.state.query
+                }&key=${this.props.googleApiKey}&inputtype=textquery&language=${
+                  this.props.language
+                }&fields=${
+                  this.props.queryFields
+                }${this.buildLocationQuery()}${this.buildCountryQuery()}`
+              ).then(response => response.json());
 
-            this.setState({
-                isLoading: false,
-                places: places.predictions
-            });
-        })
-
+              this.setState({
+                  isLoading: false,
+                  places: places.predictions,
+              });
+          }
+        );
     };
 
     onPlaceSelect = async id => {
-        const place = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${this.props.googleApiKey}&fields=${this.props.queryFields}&language=${this.props.language}`).then(response => response.json());
+        const place = await fetch(
+          `https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${this.props.googleApiKey}&fields=${this.props.queryFields}&language=${this.props.language}`
+        ).then(response => response.json());
 
-        return this.setState({
-            showList: false,
-            query: place.result.formatted_address,
-        }, () => {
-            return this.props.onSelect && this.props.onSelect(place);
-        });
-    }
+        return this.setState(
+          {
+              showList: false,
+              query: place.result.formatted_address,
+          },
+          () => {
+              return this.props.onSelect && this.props.onSelect(place);
+          }
+        );
+    };
 }
 
 PlacesInput.propTypes = {
@@ -154,7 +175,7 @@ PlacesInput.defaultProps = {
     language: 'en',
     resultRender: place => place.description,
     requiredCharactersBeforeSearch: 2,
-    requiredTimeBeforeSearch: 1000
+    requiredTimeBeforeSearch: 1000,
 };
 
 const styles = StyleSheet.create({
@@ -164,7 +185,7 @@ const styles = StyleSheet.create({
         left: 10,
         right: 10,
         zIndex: 1000,
-        shadowColor: "#000",
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
             height: 2,
@@ -177,16 +198,10 @@ const styles = StyleSheet.create({
     input: {
         height: 50,
         backgroundColor: '#fff',
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
     },
     scrollView: {
-        position: 'absolute',
-        top: 60,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
         backgroundColor: '#fff',
-        maxHeight: height
     },
     place: {
         flexDirection: 'row',
@@ -194,21 +209,21 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0,0,0,0.1)',
         padding: 15,
         position: 'relative',
-        zIndex: 10001
+        zIndex: 10001,
     },
     placeIcon: {
         position: 'absolute',
         top: 10,
         right: 15,
-        color: 'rgba(0,0,0,0.3)'
+        color: 'rgba(0,0,0,0.3)',
     },
     placeText: {
         color: 'rgba(0,0,0,0.8)',
-        paddingRight: 60
+        paddingRight: 60,
     },
     loading: {
-        margin: 10
-    }
+        margin: 10,
+    },
 });
 
 export default PlacesInput;

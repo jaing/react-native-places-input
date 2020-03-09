@@ -1,4 +1,6 @@
 # Changelog
+## 1.0.7
+Fixed issue in Android with TouchOpacity not clickable in Scroll View with absolute position.
 ## 1.0.6
 Bug fixes:
 * Component wont trigger search if input value is empty or after you clear it using text input x
