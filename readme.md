@@ -4,6 +4,8 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.0.9
+Fixing an issue with sometimes not getting details about selected place.
 ## 1.0.8
 Fixed issue that in some cases list of places is not displayed. 
 ## 1.0.7

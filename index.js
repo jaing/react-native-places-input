@@ -48,7 +48,7 @@ class PlacesInput extends Component {
                           <TouchableOpacity
                             key={`place-${place.id}`}
                             style={[styles.place, this.props.stylesItem]}
-                            onPress={() => this.onPlaceSelect(place.place_id)}
+                            onPress={() => this.onPlaceSelect(place.place_id, place)}
                           >
                               <Text style={[styles.placeText, this.props.stylesItemText]}>
                                   {this.props.resultRender(place)}
@@ -123,20 +123,32 @@ class PlacesInput extends Component {
         );
     };
 
-    onPlaceSelect = async id => {
-        const place = await fetch(
-          `https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${this.props.googleApiKey}&fields=${this.props.queryFields}&language=${this.props.language}`
-        ).then(response => response.json());
+    onPlaceSelect = async (id, passedPlace) => {
+        try {
+            const place = await fetch(
+              `https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${this.props.googleApiKey}&fields=${this.props.queryFields}&language=${this.props.language}`
+            ).then(response => response.json());
 
-        return this.setState(
-          {
-              showList: false,
-              query: place.result.formatted_address,
-          },
-          () => {
-              return this.props.onSelect && this.props.onSelect(place);
-          }
-        );
+            return this.setState(
+              {
+                  showList: false,
+                  query: place && place.result && (place.result.formatted_address || place.result.name),
+              },
+              () => {
+                  return this.props.onSelect && this.props.onSelect(place);
+              }
+            );
+        } catch (e) {
+            return this.setState(
+              {
+                  showList: false,
+                  query: passedPlace.description,
+              },
+              () => {
+                  return this.props.onSelect && this.props.onSelect(passedPlace);
+              }
+            );
+        }
     };
 }
 
