@@ -92,6 +92,16 @@ class PlacesInput extends Component {
         return `&location=${searchLatitude},${searchLongitude}&radius=${searchRadius}`;
     };
 
+    buildTypesQuery = () => {
+        const { queryTypes } = this.props;
+
+        if (!queryTypes) {
+            return '';
+        }
+
+        return `&types=${queryTypes}`;
+    };
+
     fetchPlaces = async () => {
         if (
           !this.state.query ||
@@ -112,7 +122,7 @@ class PlacesInput extends Component {
                   this.props.language
                 }&fields=${
                   this.props.queryFields
-                }${this.buildLocationQuery()}${this.buildCountryQuery()}`
+                }${this.buildLocationQuery()}${this.buildCountryQuery()}${this.buildTypesQuery()}`
               ).then(response => response.json());
 
               this.setState({
@@ -132,7 +142,10 @@ class PlacesInput extends Component {
             return this.setState(
               {
                   showList: false,
-                  query: place && place.result && (place.result.formatted_address || place.result.name),
+                  query:
+                    place &&
+                    place.result &&
+                    (place.result.formatted_address || place.result.name),
               },
               () => {
                   return this.props.onSelect && this.props.onSelect(place);
@@ -162,6 +175,7 @@ PlacesInput.propTypes = {
     resultRender: PropTypes.func,
     queryFields: PropTypes.string,
     queryCountries: PropTypes.array,
+    queryTypes: PropTypes.string,
     searchRadius: PropTypes.number,
     searchLatitude: PropTypes.number,
     searchLongitude: PropTypes.number,

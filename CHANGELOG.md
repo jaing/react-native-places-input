@@ -1,4 +1,7 @@
 # Changelog
+## 1.0.10
+New configuration props:
+* **queryTypes** - You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter.
 ## 1.0.9
 Fixing an issue with sometimes not getting details about selected place.
 ## 1.0.8

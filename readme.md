@@ -4,15 +4,13 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.0.10
+New configuration props:
+* **queryTypes** - You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter.
 ## 1.0.9
 Fixing an issue with sometimes not getting details about selected place.
 ## 1.0.8
 Fixed issue that in some cases list of places is not displayed. 
-## 1.0.7
-Fixed issue in Android with TouchOpacity not clickable in Scroll View with absolute position.
-### 1.0.6
-Bug fixes:
-* Component wont trigger search if input value is empty or after you clear it using text input x
 
 New configuration props:
 * **requiredCharactersBeforeSearch** - component wont fetch places unless string length is equal this prop. Default 2.
@@ -78,6 +76,7 @@ iconInput | PropTypes.any, | | Icon added to an input
 iconResult | PropTypes.any, | | Icon added to results
 language | PropTypes.string, | en | Language for google API call
 placeHolder | PropTypes.string, | Search places... | placeholder for an input
+queryTypes | PropTypes.string, | | You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter. [Google docs](https://developers.google.com/places/web-service/autocomplete#place_types) 
 queryFields | PropTypes.string, | formatted_address,geometry,name | Fields requested from Google API
 queryCountries | PropTypes.array | | Array of country codes to limit results
 resultRender | PropTypes.func, | place => place.description | Function to render results text
@@ -151,6 +150,16 @@ onSelect | PropTypes.func, | | Function called when you select a place
         searchRadius={500}
         searchLatitude={51.905070}
         searchLongitude={19.458834}
+        googleApiKey={GOOGLE_API_KEY} 
+        onSelect={place => this.setState({place})} 
+    />
+```
+
+### Place types
+```javascript
+    <PlacesInput
+        placeHolder={'Some placeholder'}
+        queryTypes="establishment"
         googleApiKey={GOOGLE_API_KEY} 
         onSelect={place => this.setState({place})} 
     />
