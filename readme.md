@@ -1,6 +1,8 @@
 # React Native Places Input
 Up to date working Google Places Input. Calling directly API not JS SDK.
 
+## THIS IS NOT A NATIVE LIBRARY! It is using JavaScript API and not Native Android/iOS API
+
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
