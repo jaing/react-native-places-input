@@ -165,3 +165,11 @@ onSelect | func | | Function called when you select a place
         onSelect={place => this.setState({place})} 
     />
 ```
+
+## Common issues
+If on click is not working and component is inside a ScrollView make sure to add keyboardShouldPersistTaps = always.
+
+```javascript
+     <ScrollView
+                keyboardShouldPersistTaps="always"
+```
