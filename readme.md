@@ -4,6 +4,9 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.1.0
+New configuration props:
+* **querySession** - A random string which identifies an autocomplete session for billing purposes. If this parameter is omitted from an autocomplete request, the request is billed independently. See the pricing sheet for details.
 ## 1.0.10
 New configuration props:
 * **queryTypes** - You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter.
@@ -15,9 +18,6 @@ Fixed issue that in some cases list of places is not displayed.
 New configuration props:
 * **requiredCharactersBeforeSearch** - component wont fetch places unless string length is equal this prop. Default 2.
 * **requiredTimeBeforeSearch** - idle time on text input before component will fetch places.
-### 1.0.5
-Remove default props for lat,lng and radius. 
-Add queryCountries where you can pass array of countries to limit your search results. 
 
 
 ## Installation
@@ -71,28 +71,29 @@ List of props supported by a component
 
 Prop       | Type    | Default    | Description
 ---------- | ------- | ---------- | -----------------------
-googleApiKey | PropTypes.string.isRequired, | | Google API key
-iconInput | PropTypes.any, | | Icon added to an input
-iconResult | PropTypes.any, | | Icon added to results
-language | PropTypes.string, | en | Language for google API call
-placeHolder | PropTypes.string, | Search places... | placeholder for an input
-queryTypes | PropTypes.string, | | You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter. [Google docs](https://developers.google.com/places/web-service/autocomplete#place_types) 
-queryFields | PropTypes.string, | formatted_address,geometry,name | Fields requested from Google API
-queryCountries | PropTypes.array | | Array of country codes to limit results
-resultRender | PropTypes.func, | place => place.description | Function to render results text
-searchLatitude | PropTypes.number, |  | Lat to limit results
-searchLongitude | PropTypes.number, |  | Lng to limit results
-searchRadius | PropTypes.number, |  | radius to limit results
-stylesContainer | PropTypes.object, | {} | Custom styles for a container
-stylesInput | PropTypes.object,| {} | Custom styles for an input
-stylesItem | PropTypes.object,| {} | Custom styles for an item
-stylesItemText | PropTypes.object,| {} | Custom styles for an item text
-stylesList | PropTypes.object,| {} | Custom styles for a list
-stylesLoading | PropTypes.object,| {} | Custom styles for a loading indicator
-textInputProps | PropTypes.object, | {} | Custom TextInput props
-requiredCharactersBeforeSearch | PropTypes.number | 2 | Component wont fetch places unless string length is equal this prop
-requiredTimeBeforeSearch | PropTypes.number | 1000 | Idle time on text input before component will fetch places
-onSelect | PropTypes.func, | | Function called when you select a place
+googleApiKey | PropTypes.string.isRequired | | Google API key
+iconInput | any | | Icon added to an input
+iconResult | any | | Icon added to results
+language | string | en | Language for google API call
+placeHolder | string | Search places... | placeholder for an input
+querySession | string | | A random string which identifies an autocomplete session for billing purposes. If this parameter is omitted from an autocomplete request, the request is billed independently. See the pricing sheet for details.
+queryTypes | string | | You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter. [Google docs](https://developers.google.com/places/web-service/autocomplete#place_types) 
+queryFields | string | formatted_address,geometry,name | Fields requested from Google API
+queryCountries | array | | Array of country codes to limit results
+resultRender | func | place => place.description | Function to render results text
+searchLatitude | number |  | Lat to limit results
+searchLongitude | number |  | Lng to limit results
+searchRadius | number |  | radius to limit results
+stylesContainer | object | {} | Custom styles for a container
+stylesInput | object | {} | Custom styles for an input
+stylesItem | object | {} | Custom styles for an item
+stylesItemText | object | {} | Custom styles for an item text
+stylesList | object | {} | Custom styles for a list
+stylesLoading | object,| {} | Custom styles for a loading indicator
+textInputProps | object | {} | Custom TextInput props
+requiredCharactersBeforeSearch | number | 2 | Component wont fetch places unless string length is equal this prop
+requiredTimeBeforeSearch | number | 1000 | Idle time on text input before component will fetch places
+onSelect | func | | Function called when you select a place
 
 ## Examples
 ### Inline

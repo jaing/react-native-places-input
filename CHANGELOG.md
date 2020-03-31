@@ -1,4 +1,7 @@
 # Changelog
+## 1.1.0
+New configuration props:
+* **querySession** - A random string which identifies an autocomplete session for billing purposes. If this parameter is omitted from an autocomplete request, the request is billed independently. See the pricing sheet for details.
 ## 1.0.10
 New configuration props:
 * **queryTypes** - You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter.

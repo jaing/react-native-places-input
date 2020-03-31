@@ -102,6 +102,16 @@ class PlacesInput extends Component {
         return `&types=${queryTypes}`;
     };
 
+    buildSessionQuery = () => {
+        const { querySession } = this.props;
+
+        if (querySession) {
+            return `&sessiontoken=${querySession}`
+        }
+
+        return ''
+    };
+
     fetchPlaces = async () => {
         if (
           !this.state.query ||
@@ -122,7 +132,7 @@ class PlacesInput extends Component {
                   this.props.language
                 }&fields=${
                   this.props.queryFields
-                }${this.buildLocationQuery()}${this.buildCountryQuery()}${this.buildTypesQuery()}`
+                }${this.buildLocationQuery()}${this.buildCountryQuery()}${this.buildTypesQuery()}${this.buildSessionQuery()}`
               ).then(response => response.json());
 
               this.setState({
@@ -136,7 +146,7 @@ class PlacesInput extends Component {
     onPlaceSelect = async (id, passedPlace) => {
         try {
             const place = await fetch(
-              `https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${this.props.googleApiKey}&fields=${this.props.queryFields}&language=${this.props.language}`
+              `https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${this.props.googleApiKey}&fields=${this.props.queryFields}&language=${this.props.language}${this.buildSessionQuery()}`
             ).then(response => response.json());
 
             return this.setState(
@@ -176,6 +186,7 @@ PlacesInput.propTypes = {
     queryFields: PropTypes.string,
     queryCountries: PropTypes.array,
     queryTypes: PropTypes.string,
+    querySession: PropTypes.string,
     searchRadius: PropTypes.number,
     searchLatitude: PropTypes.number,
     searchLongitude: PropTypes.number,
