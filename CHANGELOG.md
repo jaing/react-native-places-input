@@ -1,4 +1,7 @@
 # Changelog
+## 1.1.1
+New configuration props:
+* **onChangeText** - Method triggered when TextInput is changed. Returning query and this.
 ## 1.1.0
 New configuration props:
 * **querySession** - A random string which identifies an autocomplete session for billing purposes. If this parameter is omitted from an autocomplete request, the request is billed independently. See the pricing sheet for details.

@@ -25,7 +25,12 @@ class PlacesInput extends Component {
               <TextInput
                 placeholder={this.props.placeHolder}
                 style={[styles.input, this.props.stylesInput]}
-                onChangeText={query => this.setState({ query }, () => this.onPlaceSearch())}
+                onChangeText={query => {
+                    this.setState({ query }, () => {
+                        this.onPlaceSearch();
+                        this.props.onChangeText && this.props.onChangeText(query, this);
+                    });
+                }}
                 value={this.state.query}
                 onFocus={() => this.setState({ showList: true })}
                 onBlur={() => this.setState({ showList: false })}
@@ -197,6 +202,7 @@ PlacesInput.propTypes = {
     iconInput: PropTypes.any,
     language: PropTypes.string,
     onSelect: PropTypes.func,
+    onChangeText: PropTypes.func,
     requiredCharactersBeforeSearch: PropTypes.number,
     requiredTimeBeforeSearch: PropTypes.number,
 };

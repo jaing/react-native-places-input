@@ -4,20 +4,15 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.1.1
+New configuration props:
+* **onChangeText** - Method triggered when TextInput is changed. Returning query and this.
 ## 1.1.0
 New configuration props:
 * **querySession** - A random string which identifies an autocomplete session for billing purposes. If this parameter is omitted from an autocomplete request, the request is billed independently. See the pricing sheet for details.
 ## 1.0.10
 New configuration props:
 * **queryTypes** - You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter.
-## 1.0.9
-Fixing an issue with sometimes not getting details about selected place.
-## 1.0.8
-Fixed issue that in some cases list of places is not displayed. 
-
-New configuration props:
-* **requiredCharactersBeforeSearch** - component wont fetch places unless string length is equal this prop. Default 2.
-* **requiredTimeBeforeSearch** - idle time on text input before component will fetch places.
 
 
 ## Installation
@@ -94,6 +89,7 @@ textInputProps | object | {} | Custom TextInput props
 requiredCharactersBeforeSearch | number | 2 | Component wont fetch places unless string length is equal this prop
 requiredTimeBeforeSearch | number | 1000 | Idle time on text input before component will fetch places
 onSelect | func | | Function called when you select a place
+onChangeText | func | | Method triggered when TextInput is changed. Returning query and this.
 
 ## Examples
 ### Inline
