@@ -42,6 +42,7 @@ class PlacesInput extends Component {
                   style={[styles.scrollView, this.props.stylesList]}
                   keyboardShouldPersistTaps="always"
                 >
+                    {this.props.contentScrollViewTop}
                     {this.state.isLoading && (
                       <ActivityIndicator
                         size="small"
@@ -62,6 +63,7 @@ class PlacesInput extends Component {
                           </TouchableOpacity>
                         );
                     })}
+                    {this.props.contentScrollViewBottom}
                 </View>
               )}
           </View>
@@ -181,6 +183,8 @@ class PlacesInput extends Component {
 }
 
 PlacesInput.propTypes = {
+    contentScrollViewBottom: PropTypes.node,
+    contentScrollViewTop: PropTypes.node,
     stylesInput: PropTypes.object,
     stylesContainer: PropTypes.object,
     stylesList: PropTypes.object,

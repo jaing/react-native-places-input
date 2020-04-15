@@ -1,4 +1,8 @@
 # Changelog
+## 1.1.2
+New configuration props:
+* **contentScrollViewBottom** - Custom content at the bottom of scroll view list with results
+* **contentScrollViewTop** - Custom content at the bottom of scroll view list with results
 ## 1.1.1
 New configuration props:
 * **onChangeText** - Method triggered when TextInput is changed. Returning query and this.

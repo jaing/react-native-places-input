@@ -4,15 +4,16 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.1.2
+New configuration props:
+* **contentScrollViewBottom** - Custom content at the bottom of scroll view list with results
+* **contentScrollViewTop** - Custom content at the bottom of scroll view list with results
 ## 1.1.1
 New configuration props:
 * **onChangeText** - Method triggered when TextInput is changed. Returning query and this.
 ## 1.1.0
 New configuration props:
 * **querySession** - A random string which identifies an autocomplete session for billing purposes. If this parameter is omitted from an autocomplete request, the request is billed independently. See the pricing sheet for details.
-## 1.0.10
-New configuration props:
-* **queryTypes** - You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter.
 
 
 ## Installation
