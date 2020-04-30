@@ -35,7 +35,7 @@ And inside a component
 ```javascript
     <PlacesInput
         googleApiKey={GOOGLE_API_KEY}
-        onSelect={place => console.log(place}
+        onSelect={place => console.log(place)}
     />
 ```
 
