@@ -11,7 +11,7 @@ import {
 
 class PlacesInput extends Component {
     state = {
-        query: '',
+        query: this.props.query || '',
         places: [],
         showList: false,
         isLoading: false,
@@ -192,6 +192,7 @@ PlacesInput.propTypes = {
     stylesItemText: PropTypes.object,
     stylesLoading: PropTypes.object,
     resultRender: PropTypes.func,
+    query: PropTypes.string,
     queryFields: PropTypes.string,
     queryCountries: PropTypes.array,
     queryTypes: PropTypes.string,

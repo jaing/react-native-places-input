@@ -1,4 +1,7 @@
 # Changelog
+## 1.1.3
+New configuration props:
+* **query** - Custom query value for a text field
 ## 1.1.2
 New configuration props:
 * **contentScrollViewBottom** - Custom content at the bottom of scroll view list with results
