@@ -4,6 +4,8 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.1.4
+Adding loading indicator for a place details request.
 ## 1.1.3
 New configuration props:
 * **query** - Custom query value for a text field

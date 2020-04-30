@@ -1,4 +1,6 @@
 # Changelog
+## 1.1.4
+Adding loading indicator for a place details request.
 ## 1.1.3
 New configuration props:
 * **query** - Custom query value for a text field
