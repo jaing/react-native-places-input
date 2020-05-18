@@ -4,15 +4,15 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.1.5
+If query prop change it will also update a component state.
+New configuration props:
+* **clearQueryOnSelect** - Clear input query on place select
 ## 1.1.4
 Adding loading indicator for a place details request.
 ## 1.1.3
 New configuration props:
 * **query** - Custom query value for a text field
-## 1.1.2
-New configuration props:
-* **contentScrollViewBottom** - Custom content at the bottom of scroll view list with results
-* **contentScrollViewTop** - Custom content at the bottom of scroll view list with results
 
 
 ## Installation
@@ -67,6 +67,7 @@ List of props supported by a component
 Prop       | Type    | Default    | Description
 ---------- | ------- | ---------- | -----------------------
 googleApiKey | PropTypes.string.isRequired | | Google API key
+clearQueryOnSelect | bool | false | Clear input query on place select
 iconInput | any | | Icon added to an input
 iconResult | any | | Icon added to results
 language | string | en | Language for google API call

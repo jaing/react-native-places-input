@@ -19,6 +19,14 @@ class PlacesInput extends Component {
 
   timeout = null;
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.query !== this.props.query) {
+      this.setState({
+        query: this.props.query
+      })
+    }
+  }
+
   render() {
     return (
       <View style={[styles.container, this.props.stylesContainer]}>
@@ -149,6 +157,8 @@ class PlacesInput extends Component {
   };
 
   onPlaceSelect = async (id, passedPlace) => {
+    const {clearQueryOnSelect} = this.props;
+
     this.setState({
       isLoading: true,
     }, async () => {
@@ -161,7 +171,7 @@ class PlacesInput extends Component {
           {
             showList: false,
             isLoading: false,
-            query:
+            query: clearQueryOnSelect ? '' :
               place &&
               place.result &&
               (place.result.formatted_address || place.result.name),
@@ -187,6 +197,7 @@ class PlacesInput extends Component {
 }
 
 PlacesInput.propTypes = {
+  clearQueryOnSelect: PropTypes.bool,
   contentScrollViewBottom: PropTypes.node,
   contentScrollViewTop: PropTypes.node,
   stylesInput: PropTypes.object,

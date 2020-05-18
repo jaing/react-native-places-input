@@ -1,4 +1,8 @@
 # Changelog
+## 1.1.5
+If query prop change it will also update a component state.
+New configuration props:
+* **clearQueryOnSelect** - Clear input query on place select
 ## 1.1.4
 Adding loading indicator for a place details request.
 ## 1.1.3
