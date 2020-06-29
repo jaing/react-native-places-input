@@ -1,4 +1,7 @@
 # Changelog
+
+## 1.1.6
+Component is now fetching places if query prop is provided. 
 ## 1.1.5
 If query prop change it will also update a component state.
 New configuration props:

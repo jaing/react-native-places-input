@@ -23,9 +23,19 @@ class PlacesInput extends Component {
     if (prevProps.query !== this.props.query) {
       this.setState({
         query: this.props.query
+      }, () => {
+        this.fetchPlaces()
       })
     }
   }
+
+
+  componentDidMount() {
+    if (this.props.query) {
+      this.fetchPlaces()
+    }
+  }
+
 
   render() {
     return (
