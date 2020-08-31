@@ -4,6 +4,8 @@ Up to date working Google Places Input. Calling directly API not JS SDK.
 ![exmaples](https://s5.gifyu.com/images/places.gif)
 
 ## Latest changes
+## 1.1.7
+Fixing UID for a place
 ## 1.1.6
 Component is now fetching places if query prop is provided. 
 ## 1.1.5

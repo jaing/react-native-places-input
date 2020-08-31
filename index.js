@@ -70,7 +70,7 @@ class PlacesInput extends Component {
             {this.state.places.map(place => {
               return (
                 <TouchableOpacity
-                  key={`place-${place.id}`}
+                  key={`place-${place.place_id || place.id}`}
                   style={[styles.place, this.props.stylesItem]}
                   onPress={() => this.onPlaceSelect(place.place_id, place)}
                 >
