@@ -76,6 +76,7 @@ iconInput | any | | Icon added to an input
 iconResult | any | | Icon added to results
 language | string | en | Language for google API call
 placeHolder | string | Search places... | placeholder for an input
+placeholderTextColor | string | "#000000" | placeholder text color for input (iOS)
 query | string | | Custom text field value on init
 querySession | string | | A random string which identifies an autocomplete session for billing purposes. If this parameter is omitted from an autocomplete request, the request is billed independently. See the pricing sheet for details.
 queryTypes | string | | You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter. [Google docs](https://developers.google.com/places/web-service/autocomplete#place_types) 
