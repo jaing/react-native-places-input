@@ -42,6 +42,7 @@ class PlacesInput extends Component {
       <View style={[styles.container, this.props.stylesContainer]}>
         <TextInput
           placeholder={this.props.placeHolder}
+          placeholderTextColor={this.props.placeholderTextColor}
           style={[styles.input, this.props.stylesInput]}
           onChangeText={query => {
             this.setState({query}, () => {
@@ -227,6 +228,7 @@ PlacesInput.propTypes = {
   searchLongitude: PropTypes.number,
   googleApiKey: PropTypes.string.isRequired,
   placeHolder: PropTypes.string,
+  placeholderTextColor: PropTypes.string,
   textInputProps: PropTypes.object,
   iconResult: PropTypes.any,
   iconInput: PropTypes.any,
@@ -246,6 +248,7 @@ PlacesInput.defaultProps = {
   stylesItemText: {},
   queryFields: 'formatted_address,geometry,name',
   placeHolder: 'Search places...',
+  placeholderTextColor: "#000000"
   textInputProps: {},
   language: 'en',
   resultRender: place => place.description,
