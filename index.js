@@ -248,7 +248,7 @@ PlacesInput.defaultProps = {
   stylesItemText: {},
   queryFields: 'formatted_address,geometry,name',
   placeHolder: 'Search places...',
-  placeholderTextColor: "#000000"
+  placeholderTextColor: "#000000",
   textInputProps: {},
   language: 'en',
   resultRender: place => place.description,
